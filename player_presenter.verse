@@ -11,6 +11,7 @@ player_presenter := class():
     var QPlayerModel : ?player_model = false
     var QPlayerView : ?player_view = false
 
+　　# 初期化
     Initialize()<suspends>:void=
         Print("Player Presenter Initialized")
         if :
@@ -30,6 +31,7 @@ player_presenter := class():
                 AwaitModelHandle(Model, View)
                 AwaitViewHandle(Model, View)
 
+　　# モデルのイベントを待つ
     AwaitModelHandle(Model : player_model,View : player_view)<suspends>:void=
         sync:  
             loop:
@@ -41,6 +43,7 @@ player_presenter := class():
                ButtonCount := Model.ButtonCountIncrementedEvent.Await()
                View.SetButtonCountMessage(ButtonCount)
 
+    # ビューのイベントを待つ
     AwaitViewHandle(Model : player_model,View : player_view)<suspends>:void=
         loop:
             Sleep(0.1)

@@ -17,6 +17,7 @@ player_view := class():
     var QPlayerUI : ?player_ui = false
     var QNewUI : ?canvas = false
 
+    #ボタンをクリックしたイベントを公開
     ButtonOnClickedEvent<public>:event() = event(){}
 
     Initialize(Player : player)<suspends>:void =
@@ -54,10 +55,12 @@ player_view := class():
             set QNewUI = option{NewUI}
             PlayerUI.AddWidget(NewUI, player_ui_slot{InputMode := ui_input_mode.All})
             ButtonWidget.SetText(ButtonMeessage())
-
+　　
+　　#スコアセッター
     SetScoreMessage(Value : int):void=
         ScoreWidget.SetText(ScoreMessage(Value))
 
+    #ボタンカウントセッター
     SetButtonCountMessage(Value : int):void=
         ButtonCountWidget.SetText(ButtonCountMessege(Value))
 
